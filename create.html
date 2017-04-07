@@ -1,0 +1,25 @@
+<?php 
+	session_start();
+	if(!$_SESSION){
+		header('Location: index.php');
+	}
+
+ ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Exercise</title>
+</head>
+<body>
+
+<div>
+<h1>Create User</h1>
+<form action="create.php" method="POST">
+<input type="text" placeholder="username" name="user"><br />
+<input type="password" placeholder="password" name="pass"><br />
+<button type="submit">Register</button>
+</form>
+</div>
+</body>
+</html>
