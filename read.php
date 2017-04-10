@@ -3,6 +3,7 @@
 	if(!$_SESSION){
 		header('Location: index.php');
 	}
+	// print_r($_SESSION);
 	// print_r($_POST);
 	// session_start();
 	// $un=$_POST['uname'];
@@ -58,6 +59,10 @@
 <html>
 <head>
 	<title>Exercise</title>
+	<script src="jquery.js"></script>
+	<style type="text/css">
+	.hid { display: none; }
+	</style>
 </head>
 <body>
 <a href="create.html">create</a> | <a href="read.php">read</a> | <a href="update.php">update</a> | <a href="delete.php">delete</a> | <a href="search.php">search</a> | <a href="logout.php"><button>logout</button></a>
@@ -101,6 +106,41 @@
 
 		</tr>
 	</table>
+
+	
+	<?php if ($_SESSION['avatar'] == null) {
+		echo "You don't have avatar. Please upload here!"; ?>
+
+		<form action="upload.php" method="post" enctype="multipart/form-data">
+		    <input type="file" name="fileToUpload" id="fileToUpload">
+		    <input type="submit" value="Upload Image" name="submit">
+		</form>
+
+	<?php }else{ ?>
+		<img src="<?php echo $_SESSION['avatar']; ?>" alt="Your avatar can't load!" height="200px" width="200px" id="lala">
+		<h5>(Click your avatar if you want to change it)</h5>
+		<div id="frm" class="hid">
+			<form action="change_avatar.php" method="post" enctype="multipart/form-data">
+			    <input type="file" name="changeAvatar" id="changeAvatar">
+			    <input type="submit" value="ChangeAvatar" name="submit">
+			</form>
+		</div>
+		<!-- <button id="lals"></button> -->
+	<?php }?>
+
 </div>
+
+<script>
+	$(document).ready(function(){
+		$('#lala').click(function(){
+			var x = confirm("Do you want to change your avatar?");
+			if (x) {
+				$('#frm').show();
+			};
+		});
+	});
+</script>
+
+
 </body>
 </html>

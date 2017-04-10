@@ -9,9 +9,12 @@
 
 		$sqlget = "SELECT * FROM info WHERE user='$un' AND pass='$pw' ";
 		$resultget = mysqli_query($conn, $sqlget);
-		if (mysqli_num_rows($resultget)==1) {
-		
-			$_SESSION['username'] = $un;
+		// print_r(mysqli_fetch_array($resultget));
+		if ($myrow=mysqli_fetch_array($resultget)) {
+			$_SESSION['username'] = $myrow['user'];
+			$_SESSION['avatar'] = $myrow['avatar_path'];
+			$_SESSION['id'] = $myrow['id'];
+			// print_r($_SESSION);
 			header('Location: read.php');
 		}
 		else

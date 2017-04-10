@@ -108,9 +108,12 @@
 	
 </table>
 
-<script>
+	<?php if ($_SESSION['avatar'] == null) {
+		echo "You don't have avatar! Please go to read page and upload your image!"; ?>
 
-</script>
+	<?php }else{ ?>
+		<img src="<?php echo $_SESSION['avatar']; ?>" alt="Your avatar can't load!" height="200px" width="200px">
+	<?php }?>
 
 </div>
 
